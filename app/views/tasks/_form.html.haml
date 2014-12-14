@@ -1,0 +1,17 @@
+= form_for @task, html: { class: "form form-horizontal task" } do |f|
+  .form-group
+    = f.label :name, class: 'control-label'
+    .controls
+      = f.text_field :name, class: 'form-control', required: true
+    = error_span(@task[:name])
+  .form-group
+    = f.check_box :done
+    = error_span(@task[:done])
+  .form-group
+    = f.label :list_id, class: 'control-label'
+    .controls
+      = f.collection_select :list_id, List.all, :id, :name,
+        { selected: f.object.list_id }, class: 'form-control', required: true
+    = error_span(@task[:list_id])
+  = f.submit nil,class: 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), tasks_path, :class => 'btn btn-default'

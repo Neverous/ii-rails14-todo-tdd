@@ -1,0 +1,8 @@
+= form_for @list, html: { class: "form form-horizontal list" } do |f|
+  .form-group
+    = f.label :name, class: 'control-label'
+    .controls
+      = f.text_field :name, class: 'form-control', required: true
+    = error_span(@list[:name])
+  = f.submit nil,class: 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), lists_path, :class => 'btn btn-default'
