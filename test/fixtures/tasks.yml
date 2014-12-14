@@ -3,9 +3,9 @@
 one:
   name: MyString
   done: false
-  list_id: 
+  list: :one
 
 two:
   name: MyString
   done: false
-  list_id: 
+  list_id:

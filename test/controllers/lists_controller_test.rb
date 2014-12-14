@@ -9,11 +9,13 @@ class ListsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:lists)
+    assert_template 'lists/index'
   end
 
   test "should get new" do
     get :new
     assert_response :success
+    assert_template 'lists/new'
   end
 
   test "should create list" do
@@ -24,14 +26,25 @@ class ListsControllerTest < ActionController::TestCase
     assert_redirected_to list_path(assigns(:list))
   end
 
+  test "should not create list(empty name)" do
+    assert_no_difference('List.count') do
+      post :create, list: { name: '  ' }
+    end
+
+    assert_response :success
+    assert_template 'lists/new'
+  end
+
   test "should show list" do
     get :show, id: @list
     assert_response :success
+    assert_template 'lists/show'
   end
 
   test "should get edit" do
     get :edit, id: @list
     assert_response :success
+    assert_template 'lists/edit'
   end
 
   test "should update list" do
